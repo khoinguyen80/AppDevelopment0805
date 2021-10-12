@@ -10,7 +10,7 @@
                     "Create", // <-- Action Method Name
                     "Categories", // <-- Controller Name
                     null, // <-- Route value
-                    new { @class = "btn btn-info" } // <-- htmlArguments
+                    new { @class = "btn btn-default" } // <-- htmlArguments
                     )
 </div>
 
@@ -25,11 +25,25 @@
     <tbody>
         @foreach (var category in Model)
         {
-            <tr>
-                <th scope="row">@category.Id</th>
-                <td>@category.Name</td>
-                <td>@category.Description</td>
-            </tr>
+        <tr>
+            <th scope="row">@category.Id</th>
+            <td>@category.Name</td>
+            <td>@category.Description</td>
+            <td>
+
+                @Html.ActionLink("Edit", // <-- Link text
+                                 "Edit", // <-- Action Method Name
+                                 "Categories", // <-- Controller Name
+                                 new { id = category.Id }, // <-- Route value
+                                 new { @class = "btn btn-default" })  @*htmlArguments*@
+
+                @Html.ActionLink("Delete", // <-- Link text
+                                "Delete", // <-- Action Method Name
+                                "Categories", // <-- Controller Name
+                                new { id = category.Id }, // <-- Route value
+                                new { @class = "btn btn-default" })   @*htmlArguments*@
+            </td>
+         </tr>
         }
     </tbody>
 </table>

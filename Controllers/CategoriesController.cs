@@ -50,7 +50,7 @@ namespace AppDevelopment0805.Controllers
         }
 
         [HttpGet]
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
             //var categoriesId = User.Identity.GetUserId();
 
@@ -66,6 +66,44 @@ namespace AppDevelopment0805.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var categoryInDb = _context.Categories.SingleOrDefault(c => c.Id == id);
+
+            if (categoryInDb == null) return HttpNotFound();
+
+            return View(categoryInDb);
+        }
+        [HttpPost]
+        public ActionResult Edit(Category category)
+        {
+            var categoryInDb = _context.Categories.SingleOrDefault(c => c.Id == category.Id);
+
+            if (!ModelState.IsValid)
+            {
+                return View(category);
+            }
+            if (_context.Categories.Any(c => c.Name.Contains(category.Name)))
+            {
+                ModelState.AddModelError("", "Category Name already exists");
+                return View(category);
+            }
+
+
+            categoryInDb.Description = category.Description;
+            categoryInDb.Name = category.Name;
+
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+
+
         }
 
     }
