@@ -1,6 +1,6 @@
 ﻿using AppDevelopment0805.Models;
+using System;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 
 namespace AppDevelopment0805.Controllers
@@ -13,9 +13,13 @@ namespace AppDevelopment0805.Controllers
             _context = new ApplicationDbContext();
         }
         // GET: Categories
-        public ActionResult Index(string searchString)
+        public ActionResult Index(string searchCategory)
         {
             var categories = _context.Categories.ToList();
+            if (!String.IsNullOrEmpty(searchCategory))
+            {
+                categories = categories.FindAll(p => p.Name.Contains(searchCategory));
+            }
             return View(categories);
         }
         [HttpGet]
@@ -23,7 +27,6 @@ namespace AppDevelopment0805.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public ActionResult Create(Category model)
         {
@@ -31,81 +34,74 @@ namespace AppDevelopment0805.Controllers
             {
                 return View(model);
             }
-            if (_context.Categories.Any(c => c.Name.Contains(model.Name)))
+            if (_context.Categories.Any(p => p.Name.Contains(model.Name)))
             {
-                ModelState.AddModelError("", "Category Name alreay exists");
+                ModelState.AddModelError("Name", "Category Name Exists.");
                 return View(model);
             }
-            var category = new Category
+            var newCategory = new Category
             {
                 Name = model.Name,
                 Description = model.Description
             };
 
-            _context.Categories.Add(category);
-
+            _context.Categories.Add(newCategory);
             _context.SaveChanges();
-
             return RedirectToAction("Index");
         }
 
+        //Delete
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            //var categoriesId = User.Identity.GetUserId();
-
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var categoryinDb = _context.Categories
-                //.Where(c => c.Id.Equals(userId))
-                .SingleOrDefault(c => c.Id == id);
-
-            if (categoryinDb == null) return HttpNotFound();
-
-            _context.Categories.Remove(categoryinDb);
+            var categoryInDb = _context.Categories.SingleOrDefault(p => p.Id == id);
+            if (categoryInDb == null)
+            {
+                return HttpNotFound();
+            }
+            _context.Categories.Remove(categoryInDb);
             _context.SaveChanges();
-
             return RedirectToAction("Index");
         }
-
+        //Edit
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-
-            var categoryInDb = _context.Categories.SingleOrDefault(c => c.Id == id);
-
-            if (categoryInDb == null) return HttpNotFound();
-
+            var categoryInDb = _context.Categories.SingleOrDefault(p => p.Id == id);
+            if (categoryInDb == null)
+            {
+                return HttpNotFound();
+            }
             return View(categoryInDb);
         }
         [HttpPost]
         public ActionResult Edit(Category category)
         {
-            var categoryInDb = _context.Categories.SingleOrDefault(c => c.Id == category.Id);
-
             if (!ModelState.IsValid)
             {
-                return View(category);
+                return View();
             }
-            if (_context.Categories.Any(c => c.Name.Contains(category.Name)))
+            var categoryInDb = _context.Categories.SingleOrDefault(p => p.Id == category.Id);
+            if (categoryInDb == null)
             {
-                ModelState.AddModelError("", "Category Name already exists");
-                return View(category);
+                return HttpNotFound();
             }
-
-
-            categoryInDb.Description = category.Description;
             categoryInDb.Name = category.Name;
-
-
+            categoryInDb.Description = category.Description;
             _context.SaveChanges();
-
             return RedirectToAction("Index");
-
+        }
+        [HttpGet]
+        public ActionResult Details(int id)
+        {
+            var categoryInDb = _context.Categories.SingleOrDefault(p => p.Id == id);
+            if (categoryInDb == null)
+            {
+                return HttpNotFound();
+            }
+            return View(categoryInDb);
 
         }
-
     }
 }
 
