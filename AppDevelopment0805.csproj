@@ -168,14 +168,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202110120740001_CreateCategoryTable.cs" />
-    <Compile Include="Migrations\202110120740001_CreateCategoryTable.Designer.cs">
-      <DependentUpon>202110120740001_CreateCategoryTable.cs</DependentUpon>
+    <Compile Include="Migrations\202110120931005_createCategoryTable.cs" />
+    <Compile Include="Migrations\202110120931005_createCategoryTable.Designer.cs">
+      <DependentUpon>202110120931005_createCategoryTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -242,6 +243,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -260,8 +263,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202110120740001_CreateCategoryTable.resx">
-      <DependentUpon>202110120740001_CreateCategoryTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110120931005_createCategoryTable.resx">
+      <DependentUpon>202110120931005_createCategoryTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

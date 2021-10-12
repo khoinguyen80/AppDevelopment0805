@@ -7,13 +7,13 @@ namespace AppDevelopment0805.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateCategoryTable : IMigrationMetadata
+    public sealed partial class createCategoryTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateCategoryTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(createCategoryTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202110120740001_CreateCategoryTable"; }
+            get { return "202110120931005_createCategoryTable"; }
         }
         
         string IMigrationMetadata.Source
