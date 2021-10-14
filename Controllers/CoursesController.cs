@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace AppDevelopment0805.Controllers
@@ -36,6 +37,7 @@ namespace AppDevelopment0805.Controllers
             return View(coursesInDb);
         }
 
+
         [HttpGet]
         public ActionResult Create()
         {
@@ -46,6 +48,7 @@ namespace AppDevelopment0805.Controllers
 
             return View(viewModel);
         }
+
 
         [HttpPost]
         public ActionResult Create(Course course)
@@ -75,6 +78,59 @@ namespace AppDevelopment0805.Controllers
 
             return RedirectToAction("Index");
         }
+
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+
+            //var userId = User.Identity.GetUserId();
+
+            var courseInDb = _context.Courses
+                //.Where(t => t.UserId.Equals(userId))
+                .SingleOrDefault(t => t.Id == id);
+
+            if (courseInDb == null) return HttpNotFound();
+
+            var viewModels = new CourseCategoriesViewModel
+            {
+                Course = courseInDb,
+                Categories = _context.Categories.ToList()
+            };
+
+            return View(viewModels);
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(Course course)
+        {
+            //var userId = User.Identity.GetUserId();
+            var courseInDb = _context.Courses
+                //.Where(t => t.UserId.Equals(userId))
+                .SingleOrDefault(t => t.Id == course.Id);
+
+            if (!ModelState.IsValid)
+            {
+                var viewModels = new CourseCategoriesViewModel
+                {
+                    Course = course,
+                    Categories = _context.Categories.ToList()
+                };
+                return View(viewModels);
+            }
+
+            if (courseInDb == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+
+            courseInDb.CategoryId = course.CategoryId;
+            courseInDb.Name = course.Name;
+            courseInDb.Description = course.Description;
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
 
         [HttpGet]
         public ActionResult Delete(int id)
