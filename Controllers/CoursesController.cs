@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web.Mvc;
 
 namespace AppDevelopment0805.Controllers
@@ -71,6 +72,25 @@ namespace AppDevelopment0805.Controllers
             };
 
             _context.Courses.Add(newCourse);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            //var userId = User.Identity.GetUserId();
+
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+
+            var courseInDb = _context.Courses
+                //.Where(t => t.UserId.Equals(userId))
+                .SingleOrDefault(t => t.Id == id);
+
+            if (courseInDb == null) return HttpNotFound();
+
+            _context.Courses.Remove(courseInDb);
             _context.SaveChanges();
 
             return RedirectToAction("Index");
