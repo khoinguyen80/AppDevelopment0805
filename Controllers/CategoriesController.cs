@@ -12,6 +12,7 @@ namespace AppDevelopment0805.Controllers
         {
             _context = new ApplicationDbContext();
         }
+
         // GET: Categories
         public ActionResult Index(string searchCategory)
         {
@@ -22,11 +23,13 @@ namespace AppDevelopment0805.Controllers
             }
             return View(categories);
         }
+
         [HttpGet]
         public ActionResult Create()
         {
             return View();
         }
+
         [HttpPost]
         public ActionResult Create(Category model)
         {
@@ -63,6 +66,7 @@ namespace AppDevelopment0805.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
         //Edit
         [HttpGet]
         public ActionResult Edit(int id)
@@ -74,6 +78,7 @@ namespace AppDevelopment0805.Controllers
             }
             return View(categoryInDb);
         }
+
         [HttpPost]
         public ActionResult Edit(Category category)
         {
@@ -91,6 +96,7 @@ namespace AppDevelopment0805.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+
         [HttpGet]
         public ActionResult Details(int id)
         {
