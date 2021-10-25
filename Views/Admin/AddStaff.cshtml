@@ -1,0 +1,38 @@
+﻿@model IEnumerable<AppDevelopment0805.Models.Staff>
+@{
+    ViewBag.Title = "AddStaff";
+}
+
+<h2>AddStaff</h2>
+<div class="form-group">
+    @Html.ActionLink("Create new Staff", "CreateStaff", "Admin", new { @class = "btn btn-primary" })
+</div>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Age</th>
+            <th scope="col">Address</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.Age</td>
+                <td>@item.Address</td>
+                <td>@Html.ActionLink("Edit", "EditStaff", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-default" })</td>
+                <td>@Html.ActionLink("Delete", "DeleteStaff", "Admin", new { id = @item.Id }, new { @class = "btn btn-default" })</td>
+                <td>@Html.ActionLink("Change Password", "StaffChangePassword", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-danger" })</td>
+            </tr>
+        }
+            </tr>
+        </tbody>
+    </table>

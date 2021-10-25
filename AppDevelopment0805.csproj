@@ -188,6 +188,10 @@
     <Compile Include="Migrations\202110190802050_CreateTraineeTable.Designer.cs">
       <DependentUpon>202110190802050_CreateTraineeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110201617044_AddRoles.cs" />
+    <Compile Include="Migrations\202110201617044_AddRoles.Designer.cs">
+      <DependentUpon>202110201617044_AddRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -202,6 +206,8 @@
     <Compile Include="Roles\Role.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\CourseCategoriesViewModel.cs" />
+    <Compile Include="ViewModels\CreateStaffViewModel.cs" />
+    <Compile Include="ViewModels\CreateTrainerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -266,10 +272,12 @@
     <Content Include="Views\Courses\Index.cshtml" />
     <Content Include="Views\Courses\Create.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
+    <Content Include="Views\Admin\CreateStaff.cshtml" />
+    <Content Include="Views\Admin\CreateTrainer.cshtml" />
+    <Content Include="Views\Admin\AddStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Admin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -293,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202110190802050_CreateTraineeTable.resx">
       <DependentUpon>202110190802050_CreateTraineeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110201617044_AddRoles.resx">
+      <DependentUpon>202110201617044_AddRoles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
