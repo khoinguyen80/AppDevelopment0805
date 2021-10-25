@@ -173,24 +173,13 @@
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StaffsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202110120931005_createCategoryTable.cs" />
-    <Compile Include="Migrations\202110120931005_createCategoryTable.Designer.cs">
-      <DependentUpon>202110120931005_createCategoryTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110131607199_createCourseTable.cs" />
-    <Compile Include="Migrations\202110131607199_createCourseTable.Designer.cs">
-      <DependentUpon>202110131607199_createCourseTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110190802050_CreateTraineeTable.cs" />
-    <Compile Include="Migrations\202110190802050_CreateTraineeTable.Designer.cs">
-      <DependentUpon>202110190802050_CreateTraineeTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110201617044_AddRoles.cs" />
-    <Compile Include="Migrations\202110201617044_AddRoles.Designer.cs">
-      <DependentUpon>202110201617044_AddRoles.cs</DependentUpon>
+    <Compile Include="Migrations\202110251010271_ne.cs" />
+    <Compile Include="Migrations\202110251010271_ne.Designer.cs">
+      <DependentUpon>202110251010271_ne.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -275,9 +264,11 @@
     <Content Include="Views\Admin\CreateStaff.cshtml" />
     <Content Include="Views\Admin\CreateTrainer.cshtml" />
     <Content Include="Views\Admin\AddStaff.cshtml" />
+    <Content Include="Views\Admin\EditStaff.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Staffs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -293,17 +284,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202110120931005_createCategoryTable.resx">
-      <DependentUpon>202110120931005_createCategoryTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110131607199_createCourseTable.resx">
-      <DependentUpon>202110131607199_createCourseTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110190802050_CreateTraineeTable.resx">
-      <DependentUpon>202110190802050_CreateTraineeTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110201617044_AddRoles.resx">
-      <DependentUpon>202110201617044_AddRoles.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202110251010271_ne.resx">
+      <DependentUpon>202110251010271_ne.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

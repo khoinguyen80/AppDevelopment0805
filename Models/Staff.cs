@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppDevelopment0805.Models
@@ -21,7 +20,7 @@ namespace AppDevelopment0805.Models
         public string Address { get; set; }
 
         [ForeignKey("User")]
-        public String StaffId { get; set; }
+        public string StaffId { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

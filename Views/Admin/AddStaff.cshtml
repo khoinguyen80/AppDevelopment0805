@@ -21,16 +21,16 @@
     </thead>
     <tbody>
         <tr>
-            @foreach (var item in Model)
+            @foreach (var staff in Model)
             {
             <tr>
-                <td>@item.Name</td>
-                <td>@item.Email</td>
-                <td>@item.Age</td>
-                <td>@item.Address</td>
-                <td>@Html.ActionLink("Edit", "EditStaff", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-default" })</td>
-                <td>@Html.ActionLink("Delete", "DeleteStaff", "Admin", new { id = @item.Id }, new { @class = "btn btn-default" })</td>
-                <td>@Html.ActionLink("Change Password", "StaffChangePassword", "Admin", new { id = @item.StaffId }, new { @class = "btn btn-danger" })</td>
+                <td>@staff.Name</td>
+                <td>@staff.Email</td>
+                <td>@staff.Age</td>
+                <td>@staff.Address</td>
+                <td>@Html.ActionLink("Edit", "EditStaff", "Admin", new { id = @staff.Id }, new { @class = "btn btn-default" })</td>
+                <td>@Html.ActionLink("Delete", "DeleteStaff", "Admin", new { id = @staff.StaffId }, new { @class = "btn btn-default" })</td>
+                <td>@Html.ActionLink("Change Password", "StaffChangePassword", "Admin", new { id = staff.StaffId }, new { @class = "btn btn-danger" })</td>
             </tr>
         }
             </tr>

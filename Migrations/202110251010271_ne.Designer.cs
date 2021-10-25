@@ -7,13 +7,13 @@ namespace AppDevelopment0805.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class CreateTraineeTable : IMigrationMetadata
+    public sealed partial class ne : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTraineeTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(ne));
         
         string IMigrationMetadata.Id
         {
-            get { return "202110190802050_CreateTraineeTable"; }
+            get { return "202110251010271_ne"; }
         }
         
         string IMigrationMetadata.Source

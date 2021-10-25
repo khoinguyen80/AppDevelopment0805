@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
+
 namespace AppDevelopment0805.Controllers
 {
     [Authorize(Roles = Role.Admin)]
@@ -79,8 +80,8 @@ namespace AppDevelopment0805.Controllers
                 var StaffId = user.Id;
                 var newStaff = new Staff()
                 {
-                    Email = viewModel.Email,
                     StaffId = StaffId,
+                    Email = viewModel.Email,
                     Name = viewModel.Name,
                     Age = viewModel.Age,
                     Address = viewModel.Address
@@ -90,19 +91,11 @@ namespace AppDevelopment0805.Controllers
                     await UserManager.AddToRoleAsync(user.Id, Role.Staff);
                     _context.Staffs.Add(newStaff);
                     _context.SaveChanges();
-
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
                     return RedirectToAction("AddStaff", "Admin");
                 }
                 AddErrors(result);
             }
 
-            // If we got this far, something failed, redisplay form
             return View(viewModel);
         }
 
@@ -112,6 +105,51 @@ namespace AppDevelopment0805.Controllers
             {
                 ModelState.AddModelError("", error);
             }
+        }
+
+        [HttpGet]
+        public ActionResult DeleteStaff(string id)
+        {
+            var staffs = _context.Users
+                .SingleOrDefault(t => t.Id == id);
+            var staffInfoInDb = _context.Staffs
+                .SingleOrDefault(t => t.StaffId == id);
+            if (staffs == null || staffInfoInDb == null)
+            {
+                return HttpNotFound();
+            }
+            _context.Users.Remove(staffs);
+            _context.Staffs.Remove(staffInfoInDb);
+            _context.SaveChanges();
+            return RedirectToAction("AddStaff", "Admin");
+        }
+
+        [HttpGet]
+        public ActionResult EditStaff(int id)
+        {
+            var staffs = _context.Staffs
+                .SingleOrDefault(t => t.Id == id);
+            if (staffs == null)
+            {
+                return HttpNotFound();
+            }
+            return View(staffs);
+        }
+
+        [HttpPost]
+        public ActionResult EditStaff(Staff staff)
+        {
+            var staffs = _context.Staffs.SingleOrDefault(t => t.Id == staff.Id);
+            if (staffs == null)
+            {
+                return HttpNotFound();
+            }
+            staffs.Name = staff.Name;
+            staffs.Age = staff.Age;
+            staffs.Address = staff.Address;
+
+            _context.SaveChanges();
+            return RedirectToAction("AddStaff", "Admin");
         }
 
         [HttpGet]
