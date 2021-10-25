@@ -2,12 +2,13 @@
 using AppDevelopment0805.Roles;
 using AppDevelopment0805.ViewModels;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-
+using static AppDevelopment0805.Controllers.ManageController;
 
 namespace AppDevelopment0805.Controllers
 {
@@ -195,6 +196,33 @@ namespace AppDevelopment0805.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(viewModel);
+        }
+        public ActionResult StaffChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> StaffChangePassword(PasswordViewModel model, string id)
+        {
+            var userInDb = _context.Users.SingleOrDefault(i => i.Id == id);
+            if (userInDb == null)
+            {
+                return HttpNotFound();
+            }
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            userId = userInDb.Id;
+
+            if (userId != null)
+            {
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                userManager.RemovePassword(userId);
+                string newPassword = model.NewPassword;
+                userManager.AddPassword(userId, newPassword);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("AddStaff", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
     }
 }
