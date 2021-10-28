@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AppDevelopment0805.Models
@@ -21,7 +20,7 @@ namespace AppDevelopment0805.Models
         public string Specialty { get; set; }
 
         [ForeignKey("User")]
-        public String TrainerId { get; set; }
+        public string TrainerId { get; set; }
         public ApplicationUser User { get; set; }
     }
 }

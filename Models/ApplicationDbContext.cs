@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity;
+using TrainingApplication.Models;
 
 namespace AppDevelopment0805.Models
 {
@@ -18,6 +19,9 @@ namespace AppDevelopment0805.Models
         public DbSet<Trainer> Trainers { get; set; }
 
         public DbSet<Trainee> Trainees { get; set; }
+
+        public DbSet<TrainersCourse> TrainersCourses { get; set; }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

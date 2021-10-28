@@ -27,7 +27,7 @@
                         if (User.IsInRole(Role.Admin))
                         {
                             <li>@Html.ActionLink("Staff Account", "AddStaff", "Admin")</li>
-                            <li>@Html.ActionLink("Trainer Account", "AddTrainer", "Admin")</li>
+                            <li>@Html.ActionLink("Trainer Account", "AddTrainers", "Admin")</li>
                         }
                         if (User.IsInRole(Role.Staff))
                         {

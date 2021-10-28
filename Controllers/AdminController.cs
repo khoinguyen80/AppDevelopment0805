@@ -189,7 +189,7 @@ namespace AppDevelopment0805.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("AddTrainer", "Admin");
+                    return RedirectToAction("AddTrainers", "Admin");
                 }
                 AddErrors(result);
             }
@@ -224,5 +224,89 @@ namespace AppDevelopment0805.Controllers
             _context.SaveChanges();
             return RedirectToAction("AddStaff", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
         }
+
+        [HttpGet]
+        public ActionResult AddTrainers()
+        {
+            var trainers = _context.Trainers.ToList();
+            return View(trainers);
+        }
+
+        [HttpGet]
+        public ActionResult DeleteTrainer(string id)
+        {
+            var trainerInDb = _context.Users
+                .SingleOrDefault(t => t.Id == id);
+            var trainerInfoInDb = _context.Trainers
+                .SingleOrDefault(t => t.TrainerId == id);
+            if (trainerInfoInDb == null || trainerInfoInDb == null)
+            {
+                return HttpNotFound();
+            }
+            _context.Users.Remove(trainerInDb);
+            _context.Trainers.Remove(trainerInfoInDb);
+            _context.SaveChanges();
+            return RedirectToAction("AddTrainers", "Admin");
+        }
+
+        [HttpGet]
+        public ActionResult EditTrainer(int id)
+        {
+            var trainerInDb = _context.Trainers
+                .SingleOrDefault(t => t.Id == id);
+            if (trainerInDb == null)
+            {
+                return HttpNotFound();
+            }
+            return View(trainerInDb);
+        }
+
+        [HttpPost]
+        public ActionResult EditTrainer(Trainer trainer)
+        {
+            var trainerInDb = _context.Trainers.SingleOrDefault(t => t.Id == trainer.Id);
+            if (trainerInDb == null)
+            {
+                return HttpNotFound();
+            }
+            trainerInDb.Name = trainer.Name;
+            trainerInDb.Age = trainer.Age;
+            trainerInDb.Address = trainer.Address;
+            trainerInDb.Specialty = trainer.Specialty;
+
+            _context.SaveChanges();
+            return RedirectToAction("AddTrainers", "Admin");
+        }
+
+        public ActionResult TrainerChangePassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> TrainerChangePassword(PasswordViewModel model, string id)
+        {
+            var userInDb = _context.Users.SingleOrDefault(i => i.Id == id);
+            if (userInDb == null)
+            {
+                return HttpNotFound();
+            }
+            var userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            userId = userInDb.Id;
+
+            if (userId != null)
+            {
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                userManager.RemovePassword(userId);
+                string newPassword = model.NewPassword;
+                userManager.AddPassword(userId, newPassword);
+            }
+            _context.SaveChanges();
+            return RedirectToAction("AddTrainers", "Admin", new { Message = ManageMessageId.ChangePasswordSuccess });
+        }
+
+
+
     }
 }

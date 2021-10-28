@@ -174,12 +174,17 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StaffsController.cs" />
+    <Compile Include="Controllers\TrainersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\202110251010271_ne.cs" />
     <Compile Include="Migrations\202110251010271_ne.Designer.cs">
       <DependentUpon>202110251010271_ne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110271413345_addtrainer.cs" />
+    <Compile Include="Migrations\202110271413345_addtrainer.Designer.cs">
+      <DependentUpon>202110271413345_addtrainer.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -191,6 +196,7 @@
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Trainee.cs" />
     <Compile Include="Models\Trainer.cs" />
+    <Compile Include="Models\TrainerCourse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Roles\Role.cs" />
     <Compile Include="Startup.cs" />
@@ -198,6 +204,7 @@
     <Compile Include="ViewModels\CreateStaffViewModel.cs" />
     <Compile Include="ViewModels\CreateTrainerViewModel.cs" />
     <Compile Include="ViewModels\PasswordViewModel.cs" />
+    <Compile Include="ViewModels\TrainersCourseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -267,6 +274,9 @@
     <Content Include="Views\Admin\AddStaff.cshtml" />
     <Content Include="Views\Admin\EditStaff.cshtml" />
     <Content Include="Views\Admin\StaffChangePassword.cshtml" />
+    <Content Include="Views\Trainers\Index.cshtml" />
+    <Content Include="Views\Admin\AddTrainers.cshtml" />
+    <Content Include="Views\Admin\TrainerChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -288,6 +298,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110251010271_ne.resx">
       <DependentUpon>202110251010271_ne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110271413345_addtrainer.resx">
+      <DependentUpon>202110271413345_addtrainer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
