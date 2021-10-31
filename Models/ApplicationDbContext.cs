@@ -20,6 +20,8 @@ namespace AppDevelopment0805.Models
 
         public DbSet<Trainee> Trainees { get; set; }
 
+        public DbSet<TraineesCourse> TraineesCourses { get; set; }
+
         public DbSet<TrainersCourse> TrainersCourses { get; set; }
 
         public static ApplicationDbContext Create()
