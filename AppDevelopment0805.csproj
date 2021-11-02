@@ -290,6 +290,8 @@
     <Content Include="Views\Courses\AddTrainer.cshtml" />
     <Content Include="Views\Courses\GetTrainers.cshtml" />
     <Content Include="Views\Courses\RemoveTrainer.cshtml" />
+    <Content Include="Views\Trainers\Courses.cshtml" />
+    <Content Include="Views\Trainers\CourseTrainees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
