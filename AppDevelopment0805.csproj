@@ -292,10 +292,12 @@
     <Content Include="Views\Courses\RemoveTrainer.cshtml" />
     <Content Include="Views\Trainers\Courses.cshtml" />
     <Content Include="Views\Trainers\CourseTrainees.cshtml" />
+    <Content Include="Views\Trainees\Index.cshtml" />
+    <Content Include="Views\Trainees\Courses.cshtml" />
+    <Content Include="Views\Trainees\CourseTrainees.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Trainees\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

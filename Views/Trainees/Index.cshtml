@@ -1,0 +1,18 @@
+﻿@model AppDevelopment0805.Models.Trainee
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        @Model.Name
+    </div>
+    <div class="panel-body">
+        <p>Age: @Model.Age</p>
+        <p>Education: @Model.Education</p>
+        <p>Address: @Model.Address</p>
+        <p>Birthday: @Model.DateOfBirth.ToString("d")</p>
+    </div>
+</div>
