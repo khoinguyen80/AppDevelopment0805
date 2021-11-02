@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AppDevelopment0805.ViewModels.CourseTraineesViewModel>
+@{
+    ViewBag.Title = "GetTrainees";
+}
+
+<h2>Trainees in course</h2>
+
+<div>
+    @Html.ActionLink("Assign to Trainee", "AddTrainee", "Courses", new { @class = "btn btn-default" })
+    @Html.ActionLink("Remove to Trainee", "RemoveTrainee", "Courses", new { @class = "btn btn-default" })
+</div>
+
+@using (Html.BeginForm("GetTrainees", "Courses", FormMethod.Get))
+{
+    <div class="form-group">
+        @Html.TextBox("SearchCourse", null, new { @class = "form-control" })
+    </div>
+    <button type="submit" class="btn btn-default">Search</button>
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Trainees</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>@item.Course.Name</td>
+                <td>
+                    <ul>
+                        @foreach (var trainee in item.Trainees)
+                        {
+                            <li>@trainee.Email</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
