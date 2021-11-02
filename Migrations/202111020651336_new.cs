@@ -3,7 +3,7 @@ namespace AppDevelopment0805.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class trainertraineecourse : DbMigration
+    public partial class _new : DbMigration
     {
         public override void Up()
         {

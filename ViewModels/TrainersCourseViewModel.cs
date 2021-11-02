@@ -1,7 +1,7 @@
 ﻿using AppDevelopment0805.Models;
 using System.Collections.Generic;
 
-namespace TrainingApplication.ViewModels
+namespace AppDevelopment0805.ViewModels
 {
     public class TrainersCourseViewModel
     {

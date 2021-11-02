@@ -179,21 +179,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202110251010271_ne.cs" />
-    <Compile Include="Migrations\202110251010271_ne.Designer.cs">
-      <DependentUpon>202110251010271_ne.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110271413345_addtrainer.cs" />
-    <Compile Include="Migrations\202110271413345_addtrainer.Designer.cs">
-      <DependentUpon>202110271413345_addtrainer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202110311043000_trainertraineecourse.cs" />
-    <Compile Include="Migrations\202110311043000_trainertraineecourse.Designer.cs">
-      <DependentUpon>202110311043000_trainertraineecourse.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202111011243225_update b.cs" />
-    <Compile Include="Migrations\202111011243225_update b.Designer.cs">
-      <DependentUpon>202111011243225_update b.cs</DependentUpon>
+    <Compile Include="Migrations\202111020651336_new.cs" />
+    <Compile Include="Migrations\202111020651336_new.Designer.cs">
+      <DependentUpon>202111020651336_new.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -299,6 +287,9 @@
     <Content Include="Views\Courses\AddTrainee.cshtml" />
     <Content Include="Views\Courses\GetTrainees.cshtml" />
     <Content Include="Views\Courses\RemoveTrainee.cshtml" />
+    <Content Include="Views\Courses\AddTrainer.cshtml" />
+    <Content Include="Views\Courses\GetTrainers.cshtml" />
+    <Content Include="Views\Courses\RemoveTrainer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,17 +309,8 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202110251010271_ne.resx">
-      <DependentUpon>202110251010271_ne.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110271413345_addtrainer.resx">
-      <DependentUpon>202110271413345_addtrainer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202110311043000_trainertraineecourse.resx">
-      <DependentUpon>202110311043000_trainertraineecourse.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202111011243225_update b.resx">
-      <DependentUpon>202111011243225_update b.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202111020651336_new.resx">
+      <DependentUpon>202111020651336_new.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
