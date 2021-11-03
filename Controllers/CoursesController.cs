@@ -7,8 +7,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
-using TrainingApplication.Models;
-using TrainingApplication.ViewModels;
 
 namespace AppDevelopment0805.Controllers
 {

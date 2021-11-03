@@ -10,7 +10,6 @@
         <tr>
             <th scope="col">Course</th>
             <th scope="col">Description</th>
-            <th scope="col">Category</th>
             <th scope="col">Trainees</th>
         </tr>
     </thead>
@@ -20,9 +19,8 @@
             <tr>
                 <td>@item.Name</td>
                 <td>@item.Description</td>
-                <td>@item.Category.Name</td>
                 <td>
-                    @Html.ActionLink("Trainees", "CourseTrainees", "Trainee", new { id = item.Id }, new { @class = "btn btn-default" })
+                    @Html.ActionLink("Trainees", "CourseTrainees", "Trainees", new { id = item.Id }, new { @class = "btn btn-default" })
                 </td>
             </tr>
         }

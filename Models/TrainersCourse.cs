@@ -1,8 +1,7 @@
-﻿using AppDevelopment0805.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace TrainingApplication.Models
+namespace AppDevelopment0805.Models
 {
     public class TrainersCourse
     {

@@ -22,8 +22,5 @@ namespace AppDevelopment0805.Models
         [Required]
         public String Description { get; set; }
 
-        [ForeignKey("User")]
-        public string UserId { get; set; }
-        public ApplicationUser User { get; set; }
     }
 }

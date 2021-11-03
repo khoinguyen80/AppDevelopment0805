@@ -29,12 +29,23 @@
                             <li>@Html.ActionLink("Staff Account", "AddStaff", "Admin")</li>
                             <li>@Html.ActionLink("Trainer Account", "AddTrainers", "Admin")</li>
                         }
-                        if (User.IsInRole(Role.Staff))
+                        else if (User.IsInRole(Role.Staff))
                         {
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
                             <li>@Html.ActionLink("Courses", "Index", "Courses")</li>
-                            <li>@Html.ActionLink("Trainee Account", "AddTrainee","Staffs")</li>
+                            <li>@Html.ActionLink("List of Trainees", "AddTrainee", "Staffs")</li>
+                            <li>@Html.ActionLink("Courses Trainer", "GetTrainers", "Courses")</li>
+                            <li>@Html.ActionLink("Courses Trainee", "GetTrainees", "Courses")</li>
+                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                        }
+                        else if (User.IsInRole(Role.Trainer))
+                        {
+                            <li>@Html.ActionLink("Profile", "Index", "Trainers")</li>
+                            <li>@Html.ActionLink("Courses", "Courses", "Trainers")</li>
+                        }
+                        else if (User.IsInRole(Role.Trainee))
+                        {
+                            <li>@Html.ActionLink("Profile", "Index", "Trainees")</li>
+                            <li>@Html.ActionLink("Courses", "Courses", "Trainees")</li>
                         }
 
 

@@ -6,17 +6,20 @@ using System.Linq;
 using System.Web.Mvc;
 
 
+
+
 namespace AppDevelopment0805.Controllers
 {
     [Authorize(Roles = Role.Trainer)]
-    public class TraineeController : Controller
+    public class TrainersController : Controller
     {
         private ApplicationDbContext _context;
-        public TraineeController()
+        public TrainersController()
         {
             _context = new ApplicationDbContext();
         }
-        // GET: Trainee
+        // GET: Trainers
+        [HttpGet]
         public ActionResult Index()
         {
             var userId = User.Identity.GetUserId();
@@ -25,22 +28,6 @@ namespace AppDevelopment0805.Controllers
             return View(trainerInDb);
         }
 
-        [HttpGet]
-        public ActionResult Courses()
-        {
-            var trainerId = User.Identity.GetUserId();
-            var trainer = _context.Trainers.ToList();
-            var course = _context.Courses.Include(t => t.Category).ToList();
-            var courses = _context.TrainersCourses.Where(t => t.Trainer.TrainerId == trainerId).Select(t => t.Course).ToList();
-            return View(courses);
-        }
-
-        [HttpGet]
-        public ActionResult CourseTrainees(int id)
-        {
-            var traineesCourse = _context.TraineesCourses.Where(t => t.CourseId == id).Select(t => t.Trainee).ToList();
-            return View(traineesCourse);
-        }
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -67,7 +54,32 @@ namespace AppDevelopment0805.Controllers
             trainerInDb.Specialty = trainer.Specialty;
 
             _context.SaveChanges();
-            return RedirectToAction("index", "Trainers");
+            return RedirectToAction("Index", "Trainers");
+        }
+
+        [HttpGet]
+        public ActionResult Courses()
+        {
+            var trainerId = User.Identity.GetUserId();
+            var trainer = _context.Trainers.ToList();
+            var course = _context.Courses
+                .Include(t => t.Category)
+                .ToList();
+            var courses = _context.TrainersCourses
+                .Where(t => t.Trainer.TrainerId == trainerId)
+                .Select(t => t.Course)
+                .ToList();
+            return View(courses);
+        }
+
+        [HttpGet]
+        public ActionResult CourseTrainees(int id)
+        {
+            var traineesCourse = _context.TraineesCourses
+                .Where(t => t.CourseId == id)
+                .Select(t => t.Trainee)
+                .ToList();
+            return View(traineesCourse);
         }
     }
 }
